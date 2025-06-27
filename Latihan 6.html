@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aplikasi To-Do List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f0f0f0;
+            margin-bottom: 5px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delete-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        .delete-btn:hover {
+            background-color: #e63946;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 250px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>To-Do List Sederhana</h2>
+    <input type="text" id="input-todo" placeholder="Ketik tugas baru...">
+    <button onclick="tambahTugas()">Tambah</button>
+    <ul id="daftar-tugas"></ul>
+
+    <script>
+        var tugas = [];
+
+        function tambahTugas() {
+            var inputElement = document.getElementById("input-todo");
+            var nilaiTugas = inputElement.value.trim(); // Gunakan .trim() untuk menghilangkan spasi kosong
+
+            if (nilaiTugas !== "") { // Pastikan input tidak kosong
+                tugas.push(nilaiTugas);
+                inputElement.value = ""; // Mengosongkan input setelah ditambahkan
+                tampilkanDaftar();
+            } else {
+                alert("Tugas tidak boleh kosong!");
+            }
+        }
+
+        function tampilkanDaftar() {
+            var daftarElement = document.getElementById("daftar-tugas");
+            daftarElement.innerHTML = ""; // Bersihkan daftar sebelum mengisi ulang
+
+            for (let i = 0; i < tugas.length; i++) {
+                var listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <span>${tugas[i]}</span>
+                    <button class="delete-btn" onclick="hapusTugas(${i})">Hapus</button>
+                `;
+                daftarElement.appendChild(listItem);
+            }
+        }
+
+        function hapusTugas(index) {
+            tugas.splice(index, 1); // Menghapus 1 elemen dari array pada 'index' tertentu
+            tampilkanDaftar(); // Memperbarui tampilan daftar
+        }
+
+        // Panggil tampilkanDaftar() saat halaman pertama kali dimuat
+        // agar daftar kosong terlihat rapi atau jika ada tugas default
+        tampilkanDaftar(); 
+    </script>
+</body>
+</html>

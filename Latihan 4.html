@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan Perulangan</title>
+</head>
+<body>
+    <h2>Daftar Teman Sekelas</h2> <ul id="daftar-matkul">
+        </ul>
+
+    <script>
+        // Mengganti isi array matkul dengan daftar nama teman sekelas Anda
+        var matkul = ["Nur Maulida", "Sarah", "Intan", "Apriell", "Agata", "Aqlia"]; // Contoh 6 nama teman
+        
+        var daftarElement = document.getElementById("daftar-matkul");
+
+        for (let i = 0; i < matkul.length; i++) {
+            daftarElement.innerHTML += "<li>" + matkul[i] + "</li>";
+        }
+    </script>
+</body>
+</html>

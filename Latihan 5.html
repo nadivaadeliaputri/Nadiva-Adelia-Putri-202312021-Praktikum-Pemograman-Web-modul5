@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan Validasi Form</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Registrasi</h2>
+    <form onsubmit="return validasi()">
+        <label for="nama">Nama Lengkap:</label><br>
+        <input type="text" id="nama" name="nama"><br>
+        <small id="nama-error" class="error"></small><br><br> <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <small id="email-error" class="error"></small><br><br> <input type="submit" value="Daftar">
+    </form>
+
+    <script>
+        function validasi() {
+            var inputNama = document.getElementById("nama").value;
+            var errorNamaElement = document.getElementById("nama-error");
+
+            var inputEmail = document.getElementById("email").value; // Ambil nilai input Email
+            var errorEmailElement = document.getElementById("email-error"); // Elemen untuk pesan error Email
+
+            let isValid = true; // Gunakan flag untuk melacak validasi
+
+            // Validasi Nama
+            if (inputNama.trim() === "") { // Gunakan .trim() untuk menghapus spasi di awal/akhir
+                errorNamaElement.innerHTML = "Nama tidak boleh kosong!";
+                isValid = false;
+            } else {
+                errorNamaElement.innerHTML = ""; // Bersihkan pesan error jika valid
+            }
+
+            // Validasi Email
+            if (inputEmail.trim() === "") { // Validasi Email tidak boleh kosong
+                errorEmailElement.innerHTML = "Email tidak boleh kosong!";
+                isValid = false;
+            } else {
+                errorEmailElement.innerHTML = ""; // Bersihkan pesan error jika valid
+            }
+
+            // Jika ada bidang yang tidak valid, hentikan pengiriman formulir
+            if (!isValid) {
+                return false;
+            }
+
+            alert("Registrasi berhasil!");
+            return true; // Izinkan form untuk dikirim jika semua valid
+        }
+    </script>
+</body>
+</html>
